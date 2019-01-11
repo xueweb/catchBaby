@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>迎导页</title>
+    <style>
+        /*public style*/
+        body{font-family:"Microsoft Yahei";background:#ccc}
+        a{ text-decoration:none; cursor:pointer; outline: none;}
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,input,p,th,td,span,nav,header,section{margin:0; padding:0;}
+        ol,li,ul,dl,dt,dd{list-style:none;}
+        img {border:0; vertical-align:top}
+        button,submit { cursor:pointer;border: none}
+        input{outline: none;border: none}
+        h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+        table{border-collapse:collapse; border-spacing:0;}
+        select,button{  outline-style:none; outline-width:0; padding: 0; margin: 0;}
+        b,em,i{display:inline-block; font-weight:normal; font-style:normal;}
+        .clearfix:after { content: ""; display: block; height: 0; clear: both; visibility: hidden;} .clearfix{ zoom:1;}
+        .fl{float:left;}
+        .fr{float:right;}
+
+        .warp{padding: 20px 35px 60px}
+         img{width: 100%;height: 100%;padding-top: 10px;display: block}
+         .list{padding-top: 30px;}
+        .nav{font-size: 43px;font-weight: bold;border-bottom: 10px solid #fff;height: 90px;line-height: 90px;text-indent: 20px}
+        span{font-size: 40px;display: block;padding-top: 50px;height: 60px;line-height: 60px}
+
+    </style>
+    <script type="text/javascript">
+        //js控制web页面适配
+        function html_size(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth > 750) {
+                        clientWidth = 750;
+                    }
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    //window.alert(window.innerWidth);
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        }
+        html_size(document, window);
+    </script>
+</head>
+<body>
+    <div class="warp">
+        <h1 class="nav">商品券使用说明:</h1>
+        <div class="list">
+            <span>1.首先选择添加地址。</span>
+            <img src="images/item001.png">
+            <span>2.在优惠劵包选择你的优惠礼品。</span>
+            <img src="images/item003.png">
+            <span>3.选择你喜欢的颜色与款式并下单。</span>
+            <img src="images/item005.jpg">
+            <span>4.如果有疑问请与我们的联系微信号：renrenma33</span>
+            <img src="images/name01.jpg">
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="./js/lib/require.js"></script>
+    <script src="./js/main.js"></script>
+    <title>测试</title>
+</head>
+<body>
+    <button>request</button>
+    <script type="text/javascript">
+    require(['zepto'], function($) {
+        $("button").on("click", function() {
+            request1();
+        })
+        var activityId = 1;
+        var environment = 0
+
+        function request1() {
+            getUserInfo();
+            checkTask();
+            getUserInfo();
+            checkTask();
+            getUserInfo();
+            checkTask();
+            getUserInfo();
+            checkTask();
+            getUserInfo();
+            checkTask();
+        }
+
+        function getHost() {
+            var obj = {};
+            obj.host = "http://test.m.renrenma.cn";
+            obj.busId = 5;
+            switch (environment) {
+                case 0:
+                    obj.host = "http://localhost:24248";
+                    obj.busId = 5;
+                    break;
+                case 1:
+                    obj.host = "http://m.renrenma.com";
+                    obj.busId = 10110;
+                    break;
+            }
+            return obj;
+        }
+        var request = function(url, success, data, type, dataType, fail) {
+            // console.log(getGuid());
+            var success = arguments[1] ? arguments[1] : function() {};
+            var data = arguments[2] ? arguments[2] : {};
+            var type = arguments[3] ? arguments[3] : "post";
+            var dataType = arguments[4] ? arguments[4] : "json";
+            var fail = arguments[5] ? arguments[5] : function() {};
+            data.activityId = activityId;
+            $.ajax({
+                url: url,
+                dataType: dataType,
+                jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                //jsonpCallback:"flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+                type: type,
+                data: data,
+                headers: {
+                    Accept: "application/json",
+                    // guid: getGuid(),
+                },
+                success: function(res) {
+                    if (typeof res != "object") {
+                        res = JSON.parse(res);
+                    }
+                    success(res);
+                },
+                error: function(err) {
+                    fail(err);
+                }
+            })
+        }
+        var getUserInfo = function(success, data, fail) {
+            request(getHost().host + "/PrizeActivity/PrizeActivity/GetUserInfo", success, data, "get", "jsonp", fail);
+        }
+        var requestAward = function(success, data, fail) {
+            request(getHost().host + "/PrizeActivity/PrizeActivity/ClawPrize", success, data, "get", "jsonp", fail);
+        }
+        var checkTask = function(success, data, fail) {
+            request(getHost().host + "/PrizeActivity/PrizeActivity/QueryCurAddup", success, data, "get", "jsonp", fail);
+        }
+
+    })
+    </script>
+</body>
+
+</html>

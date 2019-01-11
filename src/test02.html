@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/lib/zepto.js"></script>
+    <script src="./js/lib/require.js"></script>
+    <script src="./js/api/api.js"></script>
+</head>
+<body>
+<div class="box" style="background: red;width: 200px;height: 200px"></div>
+
+</body>
+</html>
+<script>
+
+    var url = '../data/1.txt'
+    $(".box").click(function () {
+        var success = function (data) {
+            console.log(data)
+            $(".box").html(data)
+
+        }
+    })
+    api.request(url, success, "", "get")
+
+</script>

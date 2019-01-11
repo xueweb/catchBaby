@@ -1,0 +1,43 @@
+1、是否可以获取额外赠送欢乐豆（砸金蛋）
+地址：
+/PrizeActivity/PrizeActivity/CanGetExtraBean
+参数：
+{
+	activityId:0,
+	sourceId:1
+}
+response：
+{
+ 	state：true，
+	code：-5，
+ 	msg:"",
+ 	data:
+	{
+		canGetExtraBean:true/false  
+	}
+}
+
+注：state==true表示获取成功，state===0表示获取失败
+	code==-5，表示还没登陆，提示文字为请先登陆
+
+2、获取额外赠送欢乐豆（砸金蛋）
+地址：
+/PrizeActivity/PrizeActivity/GetExtraBean
+参数：
+{
+	activityId:0,
+	sourceId:1,
+	eggIndex:1(0-2，其他数字会造成接口报错)
+}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:{
+		//中奖金额（欢乐豆）
+		extraBean:6,
+		//三个金蛋中金额（欢乐豆）
+		extraBeans:[5,6,7]
+	}
+}

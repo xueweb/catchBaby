@@ -1,0 +1,1 @@
+define(["zepto"],function($){var n={};return n.request=function(n,t,e,r,u){var e=arguments[2]?arguments[2]:{},r=arguments[3]?arguments[3]:"get",u=arguments[4]?arguments[4]:function(){};$.ajax({url:n,type:r,data:e,success:function(n){t(n)},error:function(n){u(n)}})},n});

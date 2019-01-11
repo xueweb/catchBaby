@@ -1,0 +1,20 @@
+require.config({
+	baseUrl:"",
+	paths:{
+		"zepto":"./js/lib/zepto",
+		"underscore":"./js/lib/underscore-min",
+		"template":"./js/lib/arttemplate",
+		"api":"./js/api/api",
+		"util":"./js/util/util",
+		"catch":"./js/catch",
+		"lib":"./js/lib/",
+		"plugins":"./js/plugins"
+	},
+	shim:{
+		init:function(){
+			return {
+				"lib/iscroll-probe":"Iscroll"
+			}
+		}
+	}
+})

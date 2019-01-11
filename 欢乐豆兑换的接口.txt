@@ -1,0 +1,50 @@
+1、获取用户余额GetUserBalance
+地址：
+/PrizeActivity/PrizeActivity/GetUserBalance
+请求参数：
+{
+	//抽象活动Id
+	activityId : 1,
+	//渠道来源Id
+	sourceId : 1
+}
+response：
+{
+ 	state：true，
+	code：-5，
+ 	msg:"",
+ 	data:{
+		//欢乐币金额
+		joyCoin = 10,
+		//欢乐豆金额
+                joyBeans = 10
+		}
+}
+
+注：state==true表示获取成功，state===0表示获取失败
+state=false时：
+data为null
+code==-5，表示还没登陆，提示文字为请先登陆,
+其他code表示出现错误，msg为错误信息
+若state==true，可以使用data中对象
+
+2、获取商品列表
+地址：
+data/getclawlist.js
+请求参数：
+{
+	//抽象活动Id
+	activityId : 1,
+	//渠道来源Id
+	sourceId : 1
+}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:{
+		//兑换增加欢乐币数量
+		exchangeJoyCoin : 100
+	}
+}

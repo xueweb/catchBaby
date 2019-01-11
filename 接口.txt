@@ -1,0 +1,175 @@
+request header:guid:"b00c5505-5f9d-4fa5-a4b6-77ba39b60fa0"(随机生成)
+测试域名：http://test.m.renrenma.cn
+正式域名：http://m.renrenma.com
+1、获取用户信息
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetUserInfo
+参数：
+{activityId:}
+response：
+{
+ 	state：true，
+	code：-5，
+ 	msg:"",
+ 	data:{
+		id:"12212",
+		userName:"",
+		imageUrl:"",
+		money:
+  
+		}
+}
+
+注：state==true表示获取成功，state===0表示获取失败
+	code==-2，表示还没登陆，提示文字为请先登陆
+
+2、获取商品列表
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetPrizeItems
+参数：
+{activityId:}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:{
+		"low":[
+			{ "pid": "36", "pname": "iPhone 6s 16GB", "price": null, "ptype": "1" },
+			{ "pid": "11", "pname":"欢乐币", "price": "20", "ptype": "2" }
+		],
+		"middle":[{ "pid": "36", "pname": "iPhone 6s 16GB", "price": "null", "ptype": "1" }]
+	}
+}
+low代表低级商品娃娃，middle代表中级商品娃娃，high代表高级商品娃娃 
+ptype==1代表是实物，ptype==2代表是欢乐币  
+ptype==1即实物不返回价格，返回的是null
+
+3、获取中奖名单
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetBroadcastInfo
+参数：
+{activityId:}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:[
+		"恭喜 lw** 赢得了iPad mini 4",
+		"恭喜 菁菁** 赢得了iPhone 6s 16GB",
+	]
+}
+
+4、查询是否中奖
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/ClawPrize
+参数：
+{pid:1200,money:5}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:{
+		recordid:1001,
+		ptype:2,
+		money:null
+		get:true,
+	}
+	
+}
+pid代表商品id，money代表玩一次消耗的欢乐币
+ptype==1即实物不返回价格，返回的是null
+
+5、查询夹中次数
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/QueryCurAddup
+参数：
+{activityId:}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:{
+		num:0
+	}
+}
+num代表夹中次数(未清零的数量)
+
+6、夹满5次获取奖励
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetExtraPrize
+参数：
+{activityId:}
+response：
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:{
+		remainCount:1
+		money:1,
+	}
+}
+remainCount代表还需要玩多少次才可以领取随机奖励，money代表随机奖励(remainCount>0,money:null,money!=null时remainCount:0)
+
+
+7、游戏等级接口
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetBeanCost
+参数：
+{activityId:}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:{
+ 		low:1,
+		middle:30,
+		high:50
+	}
+}
+
+
+8、游戏记录接口
+地址：
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetRecordList
+参数：
+{
+	type:1
+	page:1,
+	pageSize:10
+}
+response:
+{
+	state:true,
+	code:0,
+	msg:"",
+	data:[{
+		time = 创建时间,
+                content = 显示内容,
+                url =  null 或者领奖地址,
+		type:1，
+		state:1,
+		linkName:"查看"
+	},{
+
+	}]
+}
+参数：type的值为1查询充值记录，为3查询中奖记录，不传或者为null时查询充值和中奖记录
+response：type==1为充值记录，type==3为记录，state==1为待处理，state==2为成功，state==3为失败
+url为null，没有url,不显示按钮
+url不为null,有url,按钮显示==linkName
+
+
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetUserInfo
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetPrizeItems
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetBroadcastInfo
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/ClawPrize
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/QueryCurAddup
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetExtraPrize
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetBeanCost
+test.m.renrenma.cn/PrizeActivity/PrizeActivity/GetRecordList

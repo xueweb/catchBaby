@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="http://m.renrenma.com/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <script src="./js/lib/require.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/exchange.js"></script>
+	<title>兑换欢乐币</title>
+    <style>
+        /*public style*/
+        body{background: #ffd852;font-family: "Microsoft YaHei"}
+        body,html{cursor:pointer;}
+        body{font-family:"Microsoft Yahei";}
+        a{ text-decoration:none; cursor:pointer; outline: none;}
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,input,p,th,td,span,nav,header,section{margin:0; padding:0;}
+        ol,li,ul,dl,dt,dd{list-style:none;}
+        img {border:0; vertical-align:top}
+        button,submit { cursor:pointer;border: none}
+        input{outline: none;border: none}
+        h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+        table{border-collapse:collapse; border-spacing:0;}
+        select,button{  outline-style:none; outline-width:0; padding: 0; margin: 0;}
+        b,em,i{display:inline-block; font-weight:normal; font-style:normal;}
+        .clearfix:after { content: ""; display: block; height: 0; clear: both; visibility: hidden;} .clearfix{ zoom:1;}
+        .fl{float:left;}
+        .fr{float:right;}
+
+
+        /*exchange style*/
+        .box{padding: 40px 15px 0px; font-size: 15px;color: #666}
+        /*.peas{line-height: 22px}*/
+        .nowMount{float: left;font-size: 15px;color: #666}
+        .text{float: left;padding-right: 10px;height: 22px;line-height: 22px; font-size: 14px}
+        .more{float: left;width: auto;height: 26px;line-height: 26px;padding: 0 10px;background: #fff;border-radius: 6px; font-size: 14px;min-width:.8rem;}
+        .mount{height: 34px;line-height: 30px;margin-top: 20px}
+        .mount span{display:inline-block;min-width:.8rem;width: auto;height: 26px;line-height: 26px;padding: 0 10px;background: #fff;border-radius: 10px; font-size: 15px;vertical-align: middle}
+        .seach{height: 20px;line-height: 20px;padding: 2px 5px;background: #fff; font-size: 16px;width: 100px;border-radius: 6px}
+        .Gold{height: 30px;line-height: 34px;padding: 0 5px;background: #fff;border-radius: 6px; font-size: 15px;width: 80px}
+        .btnlink{text-align: center;color: #666}
+        .btn{ border-radius: 6px;width: 1.5rem;background: #ffeeba;border: none;padding: .1rem .1rem;font-size: .3rem;color: #666}
+        .list{text-align: center;padding: 30px 15px}
+        .list li{color: #666;font-size: 15px;line-height: 30px;text-align: left}
+        .list li a{color: #666;font-size: 15px;line-height: 30px;text-align: left}
+        .list ul{ padding: 0 .2rem;}
+        .more,.seach,.Gold{text-align:center;}
+        .noBean{color: rgba(45, 37, 37, 0.52);font-size: .5rem;padding-bottom: .5rem;}
+        .hidden{display: none!important}
+        .hide{display: none}
+        .rrcs-container{text-align: center;font-size:.3rem;padding-top:.3rem;margin-top: 8px}
+        .rrcs{padding: .1rem;background: #ffeeba;border-radius: 6px;color: #666;margin-top: .5rem;width:2rem;}
+        .PointHere{color: red;}
+        .PointHere img{margin-left: 10px ;animation: join 1s infinite;width: 65px;height: 18px;padding-top: 2px}
+        @keyframes join{
+            0%{transform: translateX(10px);}
+            100%{transform: translateX(0);}
+        }
+        .tips-center {
+        margin: 0 auto;
+        background: #333;
+        color: #fff;
+        line-height: 0.3rem;
+        width: 80%;
+        text-align: center;
+        position: fixed;
+        top: 35%;
+        left: 7%;
+        z-index: 99999999;
+        display: none;
+        height: auto;
+        word-break: break-all;
+        border-radius: 4px;
+        font-size:.3rem;
+        padding:.2rem .1rem;
+    }
+    </style>
+	<script type="text/javascript">
+    //js控制web页面适配
+    function html_size(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function() {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if (clientWidth > 750) {
+                    clientWidth = 750;
+                }
+                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                //window.alert(window.innerWidth);
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    }
+    html_size(document, window);
+
+    </script>
+
+</head>
+<body>
+    <div id="tips_center" class="tips-center hide"></div>
+    <div class="box">
+        <div class="peas clearfix">
+            <div class="text">我的欢乐豆:</div>
+            <div class="more jsBean"></div>
+        </div>
+        <br>
+          <div class="peas clearfix">
+            <div class="text">我的欢乐币:</div>
+            <div class="more jsCoin"></div>
+        </div>
+        <div class="mount jsMount hidden">
+            <div class="nowMount">现在兑换数:&nbsp;</div>
+            <input type="text" placeholder="输入兑换数量 " class="seach jsBeanInput">
+            <i>=</i>
+            <span class="Gold jsChangeCoin"></span>&nbsp;欢乐币
+        </div>
+        <div class="noBean jsNoBean">您暂时无法兑换欢乐币</div>
+      
+    </div>
+        <div class="btnlink">
+            <button type="button" class="btn jsChangeBtn">兑换</button>
+        </div>
+        <div class="rrcs-container">
+            <span class="jsrrcs rrcs">人人超市直通车</span>
+        </div>
+        <div class="list">
+            <ul>
+                <li>1.欢乐豆兑换欢乐币比例:1欢乐豆=10欢乐币.</li>
+                <li>2.单项兑换，暂不支持欢乐币兑换为欢乐豆.</li>
+                <li>3.所兑换欢乐币可用于在人人超市购物抵扣现金<span class="PointHere jsrrcs">点击立即体验.<img src="images/pointer2.png"></span> </li>
+                <li>4.本活动最终解释权归属人人码所有.</li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+</html>
